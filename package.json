@@ -4,5 +4,6 @@
   "dependencies": {
     "@rails/ujs": "^6.0.0"
   },
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "packageManager": "yarn@1.22.5"
 }
