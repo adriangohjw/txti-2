@@ -4,7 +4,8 @@ class PagesController < ActionController::Base
   def new; end
 
   def create
-    Page.create(page_params)
+    @page = Page.create(page_params)
+    redirect_to "/pages/#{@page.slug}"
   end
 
   def show; end
