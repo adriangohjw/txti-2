@@ -1,0 +1,17 @@
+<%= form_with url: "/pages/#{@page.slug}", method: :put do |form| %>
+  <%= form.label :title %><br>
+  <%= form.text_field :title, value: @page.title %><br>
+  <br>
+
+  <%= form.label :body %><br>
+  <%= form.text_area :body, rows: 8, value: @page.body %><br>
+  <br>
+
+  <%= form.label :password %><br>
+  <%= form.text_field :password %><br>
+  <br>
+
+  <%= form.submit 'Update' %>
+<% end %>
+
+<%= link_to 'View', "/pages/#{@page.slug}" %>

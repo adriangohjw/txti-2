@@ -1,0 +1,23 @@
+<%= form_with url: pages_path, method: :post do |form| %>
+  <%= form.label :title %><br>
+  <%= form.text_field :title %><br>
+  <br>
+
+  <%= form.label :slug %><br>
+  <%= form.text_field :slug, required: true %><br>
+  <i>Page URL will look like "/pages/SLUG"</i><br>
+  <i>Note: Can't be changed</i><br>
+  <br>
+
+  <%= form.label :body %><br>
+  <%= form.text_area :body, rows: 8 %><br>
+  <br>
+
+  <%= form.label :password %><br>
+  <%= form.text_field :password, required: true %><br>
+  <i>Needed to update the page</i><br>
+  <i>Note: Can't be changed</i><br>
+  <br>
+
+  <%= form.submit 'Create' %>
+<% end %>
