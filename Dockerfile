@@ -22,6 +22,15 @@ RUN gem update --system --no-document && \
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
+# Use jemalloc to reduce memory usage and memory bloat
+# 1. Sets a 1-second decay time for dirty pages
+# 2. Configures 2 memory arenas to balance performance and memory usage
+# 3. Enables a background thread for maintenance tasks to enhance application performance
+RUN apt-get update && \
+    apt-get install libjemalloc2
+ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2 \
+    MALLOC_CONF=dirty_decay_ms:1000,narenas:2,background_thread:true
+
 # Install packages needed to build gems and node modules
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential curl libpq-dev node-gyp pkg-config python-is-python3
