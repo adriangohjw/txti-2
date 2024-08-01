@@ -10,15 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_17_093229) do
-
+ActiveRecord::Schema[7.1].define(version: 2024_08_01_231842) do
   create_table "pages", force: :cascade do |t|
     t.string "title"
     t.string "slug"
     t.text "body"
     t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_pages_on_slug", unique: true
   end
 
