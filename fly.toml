@@ -5,14 +5,13 @@
 
 app = "txti-clone"
 primary_region = "sin"
-kill_signal = "SIGINT"
-kill_timeout = "5s"
+console_command = '/rails/bin/rails console'
 
-[experimental]
-  auto_rollback = true
+[build]
+  dockerfile = "Dockerfile"
 
-[env]
-  PRIMARY_REGION = "sin"
+[deploy]
+  release_command = './bin/rails db:prepare'
 
 [processes]
   web = "./bin/rails server"
@@ -26,8 +25,13 @@ kill_timeout = "5s"
   processes = ["web"]
   [http_service.concurrency]
     type = "requests"
-    soft_limit = 20
-    hard_limit = 25
+    soft_limit = 16
+    hard_limit = 50
+
+[[vm]]
+  memory = '256mb'
+  cpu_kind = 'shared'
+  cpus = 1
 
 [[statics]]
   guest_path = "/rails/public"
